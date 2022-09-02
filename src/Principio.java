@@ -2,6 +2,8 @@
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,7 +40,7 @@ public class Principio extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jtree1 = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
@@ -109,45 +111,25 @@ public class Principio extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Entiendades");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Plantas");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Defensa");
-        javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("int");
-        treeNode3.add(treeNode4);
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Disparo");
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Bajo");
-        javax.swing.tree.DefaultMutableTreeNode treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("int");
-        treeNode4.add(treeNode5);
-        treeNode3.add(treeNode4);
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Medio");
-        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("int");
-        treeNode4.add(treeNode5);
-        treeNode3.add(treeNode4);
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Alto");
-        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("int");
-        treeNode4.add(treeNode5);
-        treeNode3.add(treeNode4);
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Zombies");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Clasico");
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Int");
-        treeNode3.add(treeNode4);
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Cargado");
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("int");
-        treeNode3.add(treeNode4);
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(jTree1);
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jtree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jtree1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtree1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtree1);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
         jButton1.setText("Testear");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -627,6 +609,55 @@ public class Principio extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Zombie esta Agregado");
     }//GEN-LAST:event_Crear_ZomMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        DefaultTreeModel modelo = (DefaultTreeModel)jtree1.getModel();
+        DefaultMutableTreeNode Entidad = (DefaultMutableTreeNode) modelo.getRoot();
+        DefaultMutableTreeNode plantas = new DefaultMutableTreeNode("Plantas");
+        DefaultMutableTreeNode Zombies = new DefaultMutableTreeNode("Zombies");
+        DefaultMutableTreeNode Defensa = new DefaultMutableTreeNode("Defensa");
+        DefaultMutableTreeNode Disparo = new DefaultMutableTreeNode("Disparo");
+        DefaultMutableTreeNode Explosiva = new DefaultMutableTreeNode("Explosiva");
+        DefaultMutableTreeNode Clasico = new DefaultMutableTreeNode("Clasico");
+        DefaultMutableTreeNode Cargado = new DefaultMutableTreeNode("Cargado");
+        
+        for (int i = 0; i < plan.size(); i++) {
+            if(plan.get(i) instanceof Disparo){
+              String temp = ((Disparo)plan.get(i)).getNombre();
+              Disparo.add(new  DefaultMutableTreeNode(temp));
+            }else if(plan.get(i)instanceof Explosiva ){
+                String temp2 = ((Explosiva)plan.get(i)).getNombre();
+                Explosiva.add(new  DefaultMutableTreeNode(temp2));
+            }else if (plan.get(i)instanceof Defensa){
+               String temp3 = ((Defensa)plan.get(i)).getNombre();
+               Defensa.add(new  DefaultMutableTreeNode(temp3));
+            }
+            
+        }
+        for (int i = 0; i < zom.size(); i++) {
+            if(zom.get(i) instanceof Cargado){
+              String temp4 = ((Cargado)zom.get(i)).getNombre();
+              Cargado.add(new  DefaultMutableTreeNode(temp4));
+            }else if(zom.get(i)instanceof Clasico ){
+                String temp5 = ((Clasico)zom.get(i)).getNombre();
+                Clasico.add(new  DefaultMutableTreeNode(temp5));
+            }
+        }
+        plantas.add(Defensa);
+        plantas.add(Disparo);
+        plantas.add(Explosiva);
+        Zombies.add(Clasico);
+        Zombies.add(Cargado);
+        Entidad.add(plantas);
+        Entidad.add(Zombies);
+        modelo.reload();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jtree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtree1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jtree1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -718,8 +749,8 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTree jTree1;
     private javax.swing.JList<String> jl_personas;
+    private javax.swing.JTree jtree1;
     private javax.swing.JTextField n_zom;
     private javax.swing.JRadioButton rb_Exp;
     private javax.swing.JRadioButton rb_alto;
