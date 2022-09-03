@@ -1,3 +1,6 @@
+
+import javax.swing.DefaultListModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,6 +26,10 @@ public class Cargado extends Zombies {
         this.edad = edad;
         this.enojo = enojo;
         this.persona = persona;
+    }
+
+    Cargado(int tam, int edad, int enojo, DefaultListModel modelo, String nombre, int ataque, int vida) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getTama() {

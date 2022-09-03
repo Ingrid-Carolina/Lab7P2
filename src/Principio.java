@@ -221,6 +221,14 @@ public class Principio extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         jtree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jtree1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtree1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jtree1MousePressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(jtree1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -669,7 +677,6 @@ public class Principio extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         DefaultListModel modelo = (DefaultListModel) jl_personas.getModel();
-
         modelo.addElement(new comida(com_zom.getText()));
         jl_personas.setModel(modelo);
         com_zom.setText("");
@@ -698,7 +705,7 @@ public class Principio extends javax.swing.JFrame {
             per = com_zom.getText();
             zom.add(new Cargado(tam, edad, enojo, per,nombre,ataque,vida));
         }
-
+        
         JOptionPane.showMessageDialog(this, "Zombie esta Agregado");
          CargarArbol();
     }//GEN-LAST:event_Crear_ZomMouseClicked
@@ -714,7 +721,7 @@ public class Principio extends javax.swing.JFrame {
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-        int response = JOptionPane.showConfirmDialog(
+          int response = JOptionPane.showConfirmDialog(
                 this,
                 "Seguro de Eliminar?",
                 "Confirm",
@@ -766,6 +773,62 @@ public class Principio extends javax.swing.JFrame {
         CargarArbol();
     }//GEN-LAST:event_Crear_PlanMouseClicked
 
+    private void jtree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtree1MouseClicked
+        // TODO add your handling code here:]
+        if (evt.isMetaDown()) {
+            //seleccionar un nodo con click derecho
+            int row = jtree1.getClosestRowForLocation(
+                    evt.getX(), evt.getY());
+            jtree1.setSelectionRow(row);
+            Object v1
+                    = jtree1.getSelectionPath().
+                    getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof plantas) {
+                planta_seleccionada
+                        = (plantas) nodo_seleccionado.
+                        getUserObject();
+                jPopupMenu1.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+//            }else if (nodo_seleccionado.getUserObject() instanceof Zombies) {
+//                zom_selec
+//                        = (Zombies) nodo_seleccionado.
+//                        getUserObject();
+//                jPopupMenu1.show(evt.getComponent(),
+//                        evt.getX(), evt.getY());
+           }
+
+        }
+    }//GEN-LAST:event_jtree1MouseClicked
+
+    private void jtree1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtree1MousePressed
+        // TODO add your handling code here:
+         if (evt.isMetaDown()) {
+            //seleccionar un nodo con click derecho
+            int row = jtree1.getClosestRowForLocation(
+                    evt.getX(), evt.getY());
+            jtree1.setSelectionRow(row);
+            Object v1
+                    = jtree1.getSelectionPath().
+                    getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof plantas) {
+                planta_seleccionada
+                        = (plantas) nodo_seleccionado.
+                        getUserObject();
+                jPopupMenu1.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+//            }else if (nodo_seleccionado.getUserObject() instanceof Zombies) {
+//                zom_selec
+//                        = (Zombies) nodo_seleccionado.
+//                        getUserObject();
+//                jPopupMenu1.show(evt.getComponent(),
+//                        evt.getX(), evt.getY());
+           }
+
+        }
+    }//GEN-LAST:event_jtree1MousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -801,6 +864,8 @@ public class Principio extends javax.swing.JFrame {
         });
     }
     DefaultMutableTreeNode nodo_seleccionado;
+    plantas planta_seleccionada;
+    Zombies zom_selec;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Crear_Plan;
     private javax.swing.JButton Crear_Zom;

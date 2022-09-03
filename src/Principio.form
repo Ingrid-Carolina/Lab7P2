@@ -205,6 +205,10 @@
                           <TreeModel code="Entidad&#xa; Plantas&#xa;  Explosivos&#xa;  Defensa&#xa;  Disparo&#xa; Zombies&#xa;  Calsico&#xa;  Cargado"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtree1MouseClicked"/>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtree1MousePressed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
