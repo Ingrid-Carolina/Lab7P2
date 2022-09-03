@@ -49,7 +49,7 @@ public class Clasico extends Zombies {
 
     @Override
     public String toString() {
-        return "Clasico{" + "nombre "+ getNombre()+ " anosE=" + anosE + ", bandera=" + bandera + ", Dirrecion=" + Dirrecion + '}';
+        return "Clasico{" + "/nombre "+ getNombre()+ " /Ataque= "+ getAtaque()+" /Vida= "+ getVida()+" /anos Expericencia= " + anosE + " /bandera= " + bandera + " /Dirrecion= " + Dirrecion + '}';
     }
 
     

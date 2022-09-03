@@ -29,7 +29,7 @@ public class Explosiva extends plantas {
 
     @Override
     public String toString() {
-        return "Explosiva{" +getNombre()+ "explosion=" + explosion + '}';
+        return "Explosiva{" + "/nombre="+ getNombre()+ " /Ataque= "+ getAtaque()+" /Vida= "+ getVida()+  " /Rango= "+ getRango()+" /explosion= " + explosion + '}';
     }
 
     

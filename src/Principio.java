@@ -46,6 +46,7 @@ public class Principio extends javax.swing.JFrame {
         DefaultMutableTreeNode Disparo = (DefaultMutableTreeNode) modelo.getChild(plantas, 0);
         DefaultMutableTreeNode Explosiva = (DefaultMutableTreeNode) modelo.getChild(plantas, 1);
         DefaultMutableTreeNode Defensa = (DefaultMutableTreeNode) modelo.getChild(plantas, 2);
+        
         for (int j = 0; j < plan.size(); j++) {
 
             if (plan.get(j) instanceof Disparo) {
