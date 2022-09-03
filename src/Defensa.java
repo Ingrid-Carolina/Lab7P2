@@ -14,17 +14,10 @@ public class Defensa extends plantas {
     private int peso;
 
     public Defensa() {
-        super();
     }
 
-    public Defensa(int altura, int dureza, int peso) {
-        this.altura = altura;
-        this.dureza = dureza;
-        this.peso = peso;
-    }
-
-    public Defensa(int altura, int dureza, int peso, String nombre, int ataque, int vida) {
-        super(nombre, ataque, vida);
+    public Defensa(int altura, int dureza, int peso, String rango, String nombre, int ataque, int vida) {
+        super(rango, nombre, ataque, vida);
         this.altura = altura;
         this.dureza = dureza;
         this.peso = peso;
@@ -56,7 +49,9 @@ public class Defensa extends plantas {
 
     @Override
     public String toString() {
-        return "Defensa{" +super.toString()+ "altura=" + altura + ", dureza=" + dureza + ", peso=" + peso + '}';
+        return "Defensa{" + getNombre()+"altura=" + altura + ", dureza=" + dureza + ", peso=" + peso + '}';
     }
+
+   
     
 }

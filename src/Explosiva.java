@@ -12,16 +12,10 @@ public class Explosiva extends plantas {
     private int explosion;
 
     public Explosiva() {
-        super();
-        
     }
 
-    public Explosiva(int explosion) {
-        this.explosion = explosion;
-    }
-
-    public Explosiva(int explosion, String nombre, int ataque, int vida) {
-        super(nombre, ataque, vida);
+    public Explosiva(int explosion, String rango, String nombre, int ataque, int vida) {
+        super(rango, nombre, ataque, vida);
         this.explosion = explosion;
     }
 
@@ -35,7 +29,10 @@ public class Explosiva extends plantas {
 
     @Override
     public String toString() {
-        return "Explosiva{" +super.toString()+ "explosion=" + explosion + '}';
+        return "Explosiva{" +getNombre()+ "explosion=" + explosion + '}';
     }
+
+    
+   
     
 }

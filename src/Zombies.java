@@ -8,20 +8,23 @@
  *
  * @author incah
  */
-public class Zombies extends Entidad{
+public class Zombies extends Entidad {
 
     public Zombies() {
-    super();
     }
 
     public Zombies(String nombre, int ataque, int vida) {
         super(nombre, ataque, vida);
     }
 
-    
-    @Override
-    public String toString() {
-        return "Zombies{" + '}';
+    public String getNombre() {
+        return nombre;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+   
   
 }

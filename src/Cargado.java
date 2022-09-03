@@ -15,15 +15,6 @@ public class Cargado extends Zombies {
     String persona;
 
     public Cargado() {
-    super();
-    
-    }
-
-    public Cargado(int tama, int edad, int enojo, String persona) {
-        this.tama = tama;
-        this.edad = edad;
-        this.enojo = enojo;
-        this.persona = persona;
     }
 
     public Cargado(int tama, int edad, int enojo, String persona, String nombre, int ataque, int vida) {
@@ -68,7 +59,8 @@ public class Cargado extends Zombies {
 
     @Override
     public String toString() {
-        return "Cargado{" + super.toString()+ "tama=" + tama + ", edad=" + edad + ", enojo=" + enojo + ", persona=" + persona + '}';
+        return "Cargado{" +"nombre " +getNombre()+ "tama=" + tama + ", edad=" + edad + ", enojo=" + enojo + ", persona=" + persona + '}';
     }
+
     
 }

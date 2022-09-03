@@ -9,21 +9,36 @@
  * @author incah
  */
 public class plantas extends Entidad{
+ String rango;
 
     public plantas() {
-    super();
+    
     }
 
-    public plantas(String nombre, int ataque, int vida) {
+    public plantas(String rango) {
+        this.rango = rango;
+    }
+
+    public plantas(String rango, String nombre, int ataque, int vida) {
         super(nombre, ataque, vida);
+        this.rango = rango;
     }
 
-   
-   
+    public String getRango() {
+        return rango;
+    }
+
+    public void setRango(String rango) {
+        this.rango = rango;
+    }
 
     @Override
     public String toString() {
-        return "plantas{" + '}';
+        return "plantas{" + "rango=" + rango + '}';
     }
 
+    
+   
+    
+   
 }

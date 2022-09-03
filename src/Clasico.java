@@ -14,13 +14,6 @@ public class Clasico extends Zombies {
     String Dirrecion;
 
     public Clasico() {
-        super();
-    }
-
-    public Clasico(int anosE, String bandera, String Dirrecion) {
-        this.anosE = anosE;
-        this.bandera = bandera;
-        this.Dirrecion = Dirrecion;
     }
 
     public Clasico(int anosE, String bandera, String Dirrecion, String nombre, int ataque, int vida) {
@@ -56,7 +49,9 @@ public class Clasico extends Zombies {
 
     @Override
     public String toString() {
-        return "Clasico{" +super.toString()+ "anosE=" + anosE + ", bandera=" + bandera + ", Dirrecion=" + Dirrecion + '}';
+        return "Clasico{" + "nombre "+ getNombre()+ " anosE=" + anosE + ", bandera=" + bandera + ", Dirrecion=" + Dirrecion + '}';
     }
+
+    
     
 }

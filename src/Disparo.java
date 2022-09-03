@@ -13,16 +13,10 @@ public class Disparo extends plantas {
     private String Color;
 
     public Disparo() {
-        super();
     }
 
-    public Disparo(String proyectil, String Color) {
-        this.proyectil = proyectil;
-        this.Color = Color;
-    }
-
-    public Disparo(String proyectil, String Color, String nombre, int ataque, int vida) {
-        super(nombre, ataque, vida);
+    public Disparo(String proyectil, String Color, String rango, String nombre, int ataque, int vida) {
+        super(rango, nombre, ataque, vida);
         this.proyectil = proyectil;
         this.Color = Color;
     }
@@ -45,7 +39,11 @@ public class Disparo extends plantas {
 
     @Override
     public String toString() {
-        return "Disparo{" +super.toString()+ "proyectil=" + proyectil + ", Color=" + Color + '}';
+        return "Disparo{" + getNombre()+"proyectil=" + proyectil + ", Color=" + Color + '}';
     }
+
+    
+
+    
     
 }

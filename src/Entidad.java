@@ -9,7 +9,7 @@
  * @author incah
  */
 public class Entidad {
-     private String nombre;
+      String nombre;
    private int ataque;
    private int vida;
 

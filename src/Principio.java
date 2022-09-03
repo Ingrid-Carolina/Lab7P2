@@ -688,14 +688,14 @@ public class Principio extends javax.swing.JFrame {
             ano = (int) anoE.getValue();
             band = bandera.getText();
             dic = Direccion.getText();
-            zom.add(new Clasico(ano, band, dic));
+            zom.add(new Clasico(ano, band, dic,nombre,ataque,vida));
         } else {
             tipo = "Cargado";
             edad = (int) ed.getValue();
             tam = (int) tama.getValue();
             enojo = (int) en.getValue();
             per = com_zom.getText();
-            zom.add(new Cargado(tam, edad, enojo, per));
+            zom.add(new Cargado(tam, edad, enojo, per,nombre,ataque,vida));
         }
 
         JOptionPane.showMessageDialog(this, "Zombie esta Agregado");
@@ -731,7 +731,7 @@ public class Principio extends javax.swing.JFrame {
 
     private void Crear_PlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Crear_PlanMouseClicked
         int vida, ataque, alt, du, peso, Expo;
-        String nombre, rango, tipo, proct, colo;
+        String nombre, rango = null, tipo, proct, colo;
 
         vida = (int) vida_plan.getValue();
         ataque = (int) ata_plan.getValue();
@@ -748,16 +748,16 @@ public class Principio extends javax.swing.JFrame {
             alt = (int) jSpinner2.getValue();
             du = (int) jSpinner6.getValue();
             peso = (int) jSpinner5.getValue();
-            plan.add(new Defensa(alt, du, peso));
+            plan.add(new Defensa(alt, du, peso,rango,nombre,ataque,vida));
         } else if (rb_dis.isSelected()) {
             tipo = "Disparo";
             proct = jTextField2.getText();
             colo = jTextField3.getText();
-            plan.add(new Disparo(proct, colo));
+            plan.add(new Disparo(proct, colo,rango,nombre,ataque,vida));
         } else if (rb_Exp.isSelected()) {
             tipo = "Explosiva";
             Expo = (int) jSpinner1.getValue();
-            plan.add(new Explosiva(Expo));
+            plan.add(new Explosiva(Expo,rango,nombre,ataque,vida));
         }
         JOptionPane.showMessageDialog(this, "Plantas esta Agregado");
 // TODO add your handling code here:
