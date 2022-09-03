@@ -777,28 +777,18 @@ public class Principio extends javax.swing.JFrame {
         // TODO add your handling code here:]
         if (evt.isMetaDown()) {
             //seleccionar un nodo con click derecho
-            int row = jtree1.getClosestRowForLocation(
-                    evt.getX(), evt.getY());
+            int row = jtree1.getClosestRowForLocation(evt.getX(), evt.getY());
             jtree1.setSelectionRow(row);
-            Object v1
-                    = jtree1.getSelectionPath().
-                    getLastPathComponent();
+            Object v1 = jtree1.getSelectionPath().getLastPathComponent();
             nodo_seleccionado = (DefaultMutableTreeNode) v1;
             if (nodo_seleccionado.getUserObject() instanceof plantas) {
-                planta_seleccionada
-                        = (plantas) nodo_seleccionado.
-                        getUserObject();
-                jPopupMenu1.show(evt.getComponent(),
-                        evt.getX(), evt.getY());
-//            }else if (nodo_seleccionado.getUserObject() instanceof Zombies) {
-//                zom_selec
-//                        = (Zombies) nodo_seleccionado.
-//                        getUserObject();
-//                jPopupMenu1.show(evt.getComponent(),
-//                        evt.getX(), evt.getY());
-           }
+                planta_seleccionada= (plantas) nodo_seleccionado.getUserObject();
+                jPopupMenu1.show(evt.getComponent(),evt.getX(), evt.getY());
+            }
 
         }
+
+        
     }//GEN-LAST:event_jtree1MouseClicked
 
     private void jtree1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtree1MousePressed
