@@ -10,7 +10,6 @@ import javax.swing.tree.DefaultTreeModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author incah
@@ -22,6 +21,66 @@ public class Principio extends javax.swing.JFrame {
      */
     public Principio() {
         initComponents();
+        CargarArbol();
+    }
+
+    public void CrearNodo() {
+        DefaultTreeModel modelo = (DefaultTreeModel) jtree1.getModel();
+        DefaultMutableTreeNode Entidad = (DefaultMutableTreeNode) modelo.getRoot();
+        DefaultMutableTreeNode plantas = new DefaultMutableTreeNode("Plantas");
+        DefaultMutableTreeNode Zombies = new DefaultMutableTreeNode("Zombies");
+        DefaultMutableTreeNode Defensa = new DefaultMutableTreeNode("Defensa");
+        DefaultMutableTreeNode Disparo = new DefaultMutableTreeNode("Disparo");
+        DefaultMutableTreeNode Explosiva = new DefaultMutableTreeNode("Explosiva");
+        DefaultMutableTreeNode Clasico = new DefaultMutableTreeNode("Clasico");
+        DefaultMutableTreeNode Cargado = new DefaultMutableTreeNode("Cargado");
+        DefaultMutableTreeNode Bajo = new DefaultMutableTreeNode("Bajo");
+        DefaultMutableTreeNode Medio = new DefaultMutableTreeNode("Medio");
+        DefaultMutableTreeNode Alto = new DefaultMutableTreeNode("Alto");
+    }
+
+    public void CargarArbol() {
+        DefaultTreeModel modelo = (DefaultTreeModel) jtree1.getModel();
+        DefaultMutableTreeNode Entidad = (DefaultMutableTreeNode) modelo.getRoot();
+        DefaultMutableTreeNode plantas = (DefaultMutableTreeNode) modelo.getChild(modelo.getRoot(), 0);
+        DefaultMutableTreeNode Disparo = (DefaultMutableTreeNode) modelo.getChild(plantas, 0);
+        DefaultMutableTreeNode Explosiva = (DefaultMutableTreeNode) modelo.getChild(plantas, 1);
+        DefaultMutableTreeNode Defensa = (DefaultMutableTreeNode) modelo.getChild(plantas, 2);
+        for (int j = 0; j < plan.size(); j++) {
+
+            if (plan.get(j) instanceof Disparo) {
+                String temp = ((Disparo) plan.get(j)).toString();
+                Disparo.add(new DefaultMutableTreeNode(temp));
+            } else if (plan.get(j) instanceof Explosiva) {
+                String temp2 = ((Explosiva) plan.get(j)).toString();
+                Explosiva.add(new DefaultMutableTreeNode(temp2));
+            } else if (plan.get(j) instanceof Defensa) {
+                String temp3 = ((Defensa) plan.get(j)).toString();
+                Defensa.add(new DefaultMutableTreeNode(temp3));
+            }
+
+        }
+        DefaultMutableTreeNode Zombies = (DefaultMutableTreeNode) modelo.getChild(modelo.getRoot(), 1);
+        DefaultMutableTreeNode Clasico = (DefaultMutableTreeNode) modelo.getChild(Zombies, 0);
+        DefaultMutableTreeNode Cargado = (DefaultMutableTreeNode) modelo.getChild(Zombies, 1);
+        for (int z = 0; z < zom.size(); z++) {
+            if (zom.get(z) instanceof Cargado) {
+                String temp4 = ((Cargado) zom.get(z)).toString();
+                Cargado.add(new DefaultMutableTreeNode(temp4));
+            } else if (zom.get(z) instanceof Clasico) {
+                String temp5 = ((Clasico) zom.get(z)).toString();
+                Clasico.add(new DefaultMutableTreeNode(temp5));
+            }
+        }
+
+        plantas.add(Defensa);
+        plantas.add(Disparo);
+        plantas.add(Explosiva);
+        Zombies.add(Clasico);
+        Zombies.add(Cargado);
+        Entidad.add(plantas);
+        Entidad.add(Zombies);
+        modelo.reload();
     }
 
     /**
@@ -36,14 +95,18 @@ public class Principio extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        Imprimir = new javax.swing.JMenuItem();
+        Eliminar = new javax.swing.JMenuItem();
+        Elegir = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtree1 = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtree1 = new javax.swing.JTree();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         rb_bajo = new javax.swing.JRadioButton();
@@ -60,9 +123,9 @@ public class Principio extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
+        ata_plan = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner4 = new javax.swing.JSpinner();
+        vida_plan = new javax.swing.JSpinner();
         Crear_Plan = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -102,6 +165,25 @@ public class Principio extends javax.swing.JFrame {
         jl_personas = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
+        Imprimir.setText("jMenuItem1");
+        Imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(Imprimir);
+
+        Eliminar.setText("jMenuItem2");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(Eliminar);
+
+        Elegir.setText("jMenuItem3");
+        jPopupMenu1.add(Elegir);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -110,15 +192,6 @@ public class Principio extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jtree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jtree1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtree1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jtree1);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -131,14 +204,32 @@ public class Principio extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Entidad");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Plantas");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Explosivos");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Defensa");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Disparo");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Zombies");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Calsico");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Cargado");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jtree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane4.setViewportView(jtree1);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -147,14 +238,16 @@ public class Principio extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 77, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Test", jPanel2);
@@ -189,13 +282,16 @@ public class Principio extends javax.swing.JFrame {
 
         jLabel6.setText("Nombre");
 
-        jTextField1.setText("jTextField1");
-
         jLabel7.setText("Ataque");
 
         jLabel8.setText("Vida");
 
         Crear_Plan.setText("Crear");
+        Crear_Plan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Crear_PlanMouseClicked(evt);
+            }
+        });
 
         jLabel9.setText("Nombre Proyectil");
 
@@ -247,7 +343,7 @@ public class Principio extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                            .addComponent(jSpinner4)
+                            .addComponent(vida_plan)
                             .addComponent(jTextField1))
                         .addGap(0, 35, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -271,7 +367,7 @@ public class Principio extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ata_plan, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Crear_Plan, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(44, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -300,7 +396,7 @@ public class Principio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ata_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -310,7 +406,7 @@ public class Principio extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vida_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Crear_Plan)
                     .addComponent(rb_medio)
                     .addComponent(rb_dis))
@@ -340,7 +436,7 @@ public class Principio extends javax.swing.JFrame {
                             .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Plantas", jPanel3);
@@ -523,7 +619,7 @@ public class Principio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Zombies", jPanel4);
@@ -550,7 +646,7 @@ public class Principio extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -571,7 +667,7 @@ public class Principio extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-         DefaultListModel modelo = (DefaultListModel) jl_personas.getModel();
+        DefaultListModel modelo = (DefaultListModel) jl_personas.getModel();
 
         modelo.addElement(new comida(com_zom.getText()));
         jl_personas.setModel(modelo);
@@ -580,83 +676,94 @@ public class Principio extends javax.swing.JFrame {
 
     private void Crear_ZomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Crear_ZomMouseClicked
         // TODO add your handling code here:
-        int vida, ataque,ano,edad,tam,enojo;
-        String nombre,tipo,band,dic,per;
-        
+        int vida, ataque, ano, edad, tam, enojo;
+        String nombre, tipo, band, dic, per;
+
         vida = (int) vida_zom.getValue();
         ataque = (int) ata_zom.getValue();
         nombre = n_zom.getText();
-          
-                
-                if (rb_cla.isSelected()) {
-                tipo = "Clasico";
-                ano = (int)anoE.getValue();
-                band = bandera.getText();
-                dic = Direccion.getText();
-                zom.add(new Clasico(ano,band,dic));
-            } else {
-                tipo = "Cargado";
-                edad = (int) ed.getValue();
-                tam = (int) tama.getValue();
-                enojo = (int) en.getValue();
-                per = com_zom.getText();
-                zom.add(new Cargado(tam,edad,enojo,per));
-            } 
-            
-         
-          
 
-             JOptionPane.showMessageDialog(this, "Zombie esta Agregado");
+        if (rb_cla.isSelected()) {
+            tipo = "Clasico";
+            ano = (int) anoE.getValue();
+            band = bandera.getText();
+            dic = Direccion.getText();
+            zom.add(new Clasico(ano, band, dic));
+        } else {
+            tipo = "Cargado";
+            edad = (int) ed.getValue();
+            tam = (int) tama.getValue();
+            enojo = (int) en.getValue();
+            per = com_zom.getText();
+            zom.add(new Cargado(tam, edad, enojo, per));
+        }
+
+        JOptionPane.showMessageDialog(this, "Zombie esta Agregado");
+         CargarArbol();
     }//GEN-LAST:event_Crear_ZomMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        DefaultTreeModel modelo = (DefaultTreeModel)jtree1.getModel();
-        DefaultMutableTreeNode Entidad = (DefaultMutableTreeNode) modelo.getRoot();
-        DefaultMutableTreeNode plantas = new DefaultMutableTreeNode("Plantas");
-        DefaultMutableTreeNode Zombies = new DefaultMutableTreeNode("Zombies");
-        DefaultMutableTreeNode Defensa = new DefaultMutableTreeNode("Defensa");
-        DefaultMutableTreeNode Disparo = new DefaultMutableTreeNode("Disparo");
-        DefaultMutableTreeNode Explosiva = new DefaultMutableTreeNode("Explosiva");
-        DefaultMutableTreeNode Clasico = new DefaultMutableTreeNode("Clasico");
-        DefaultMutableTreeNode Cargado = new DefaultMutableTreeNode("Cargado");
-        
-        for (int i = 0; i < plan.size(); i++) {
-            if(plan.get(i) instanceof Disparo){
-              String temp = ((Disparo)plan.get(i)).getNombre();
-              Disparo.add(new  DefaultMutableTreeNode(temp));
-            }else if(plan.get(i)instanceof Explosiva ){
-                String temp2 = ((Explosiva)plan.get(i)).getNombre();
-                Explosiva.add(new  DefaultMutableTreeNode(temp2));
-            }else if (plan.get(i)instanceof Defensa){
-               String temp3 = ((Defensa)plan.get(i)).getNombre();
-               Defensa.add(new  DefaultMutableTreeNode(temp3));
-            }
-            
-        }
-        for (int i = 0; i < zom.size(); i++) {
-            if(zom.get(i) instanceof Cargado){
-              String temp4 = ((Cargado)zom.get(i)).getNombre();
-              Cargado.add(new  DefaultMutableTreeNode(temp4));
-            }else if(zom.get(i)instanceof Clasico ){
-                String temp5 = ((Clasico)zom.get(i)).getNombre();
-                Clasico.add(new  DefaultMutableTreeNode(temp5));
-            }
-        }
-        plantas.add(Defensa);
-        plantas.add(Disparo);
-        plantas.add(Explosiva);
-        Zombies.add(Clasico);
-        Zombies.add(Cargado);
-        Entidad.add(plantas);
-        Entidad.add(Zombies);
-        modelo.reload();
+
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jtree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtree1MouseClicked
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jtree1MouseClicked
+    }//GEN-LAST:event_ImprimirActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(
+                this,
+                "Seguro de Eliminar?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+
+        if (response == JOptionPane.OK_OPTION) {
+            DefaultTreeModel m
+                    = (DefaultTreeModel) jtree1.getModel();
+            m.removeNodeFromParent(
+                    nodo_seleccionado);
+            m.reload();
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void Crear_PlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Crear_PlanMouseClicked
+        int vida, ataque, alt, du, peso, Expo;
+        String nombre, rango, tipo, proct, colo;
+
+        vida = (int) vida_plan.getValue();
+        ataque = (int) ata_plan.getValue();
+        nombre = jTextField1.getText();
+        if (rb_bajo.isSelected()) {
+            rango = "Bajo";
+        } else if (rb_medio.isSelected()) {
+            rango = "Medio";
+        } else if (rb_alto.isSelected()) {
+            rango = "Alto";
+        }
+        if (rb_def.isSelected()) {
+            tipo = "Defensa";
+            alt = (int) jSpinner2.getValue();
+            du = (int) jSpinner6.getValue();
+            peso = (int) jSpinner5.getValue();
+            plan.add(new Defensa(alt, du, peso));
+        } else if (rb_dis.isSelected()) {
+            tipo = "Disparo";
+            proct = jTextField2.getText();
+            colo = jTextField3.getText();
+            plan.add(new Disparo(proct, colo));
+        } else if (rb_Exp.isSelected()) {
+            tipo = "Explosiva";
+            Expo = (int) jSpinner1.getValue();
+            plan.add(new Explosiva(Expo));
+        }
+        JOptionPane.showMessageDialog(this, "Plantas esta Agregado");
+// TODO add your handling code here:
+
+        CargarArbol();
+    }//GEN-LAST:event_Crear_PlanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -692,12 +799,16 @@ public class Principio extends javax.swing.JFrame {
             }
         });
     }
-
+    DefaultMutableTreeNode nodo_seleccionado;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Crear_Plan;
     private javax.swing.JButton Crear_Zom;
     private javax.swing.JTextField Direccion;
+    private javax.swing.JMenuItem Elegir;
+    private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Imprimir;
     private javax.swing.JSpinner anoE;
+    private javax.swing.JSpinner ata_plan;
     private javax.swing.JSpinner ata_zom;
     private javax.swing.JTextField bandera;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -735,13 +846,12 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
     private javax.swing.JSpinner jSpinner5;
     private javax.swing.JSpinner jSpinner6;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -761,8 +871,9 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_dis;
     private javax.swing.JRadioButton rb_medio;
     private javax.swing.JSpinner tama;
+    private javax.swing.JSpinner vida_plan;
     private javax.swing.JSpinner vida_zom;
     // End of variables declaration//GEN-END:variables
-ArrayList<Zombies> zom= new ArrayList();
-ArrayList<plantas> plan = new ArrayList();
+ArrayList<Zombies> zom = new ArrayList();
+    ArrayList<plantas> plan = new ArrayList();
 }
